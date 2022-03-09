@@ -828,7 +828,7 @@ export class Game implements ISerializable<SerializedGame> {
     // pristar hook
     const pristar = this.players.find((player) => player.isCorporation(CardName._PRISTAR_));
     if (pristar !== undefined) {
-      this.marsIsTerraformed() ? pristar.drawCard(pristar.getResourcesOnCorporation()) : 0
+      this.marsIsTerraformed() ? pristar.drawCard(pristar.getResourcesOnCorporation()) : 0;
     }
     if (this.isSoloMode()) {
       // Solo games continue until the designated generation end even if Mars is already terraformed

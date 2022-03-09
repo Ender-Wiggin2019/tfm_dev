@@ -50,7 +50,7 @@ export class User {
     }
 
     public getEloScore() : number {
-      return this.elo
+      return this.elo;
     }
 }
 
