@@ -66,6 +66,7 @@ export interface CreateGameModel {
     requiresVenusTrackCompletion: boolean;
     requiresMoonTrackCompletion: boolean;
     seededGame: boolean;
+    eloMode: boolean;
 }
 
 export interface NewPlayerModel {
@@ -142,6 +143,7 @@ export const CreateGameForm = Vue.component('create-game-form', {
       allOfficialExpansions: true,
       requiresVenusTrackCompletion: false,
       requiresMoonTrackCompletion: false,
+      eloMode: false,
     };
   },
   components: {
@@ -413,6 +415,7 @@ export const CreateGameForm = Vue.component('create-game-form', {
       const randomFirstPlayer = component.randomFirstPlayer;
       const requiresVenusTrackCompletion = component.requiresVenusTrackCompletion;
       const requiresMoonTrackCompletion = component.requiresMoonTrackCompletion;
+      const eloMode = component.eloMode;
       const clonedGamedId: undefined | string = undefined;
 
       // Check custom colony count
@@ -479,6 +482,7 @@ export const CreateGameForm = Vue.component('create-game-form', {
         randomFirstPlayer,
         requiresVenusTrackCompletion,
         requiresMoonTrackCompletion,
+        eloMode,
       }, undefined, 4);
       return dataToSend;
     },
@@ -582,11 +586,15 @@ export const CreateGameForm = Vue.component('create-game-form', {
                                 <span v-i18n>Promos</span>&nbsp;
                             </label>
                             <div class="create-game-subsection-label" v-i18n>Fan-made</div>
+                            <input type="checkbox" name="eloMode" id="elo-checkbox" v-model="eloMode">
+                            <label for="elo-checkbox" class="expansion-button">
+                                <div class="create-game-expansion-icon expansion-icon-prelude"></div>
+                                <span v-i18n>ELO</span>
+                            </label>
                             <input type="checkbox" name="heatFor" id="heatFor-checkbox" v-model="heatFor"  v-if="isvip">
                             <label for="heatFor-checkbox"  :class="{forbidden:!isvip}">
-                                <span v-i18n>7 Heat Into Temperature</span> 
+                                <span v-i18n>7 Heat Into Temperature</span>
                             </label>
-                
                             <input type="checkbox" name="breakthrough" id="breakthrough-checkbox" v-model="breakthrough"  v-if="isvip">
                             <label for="breakthrough-checkbox"  :class="{forbidden:!isvip}">
                                 <span v-i18n>BreakThrough</span>&nbsp;<a href="https://docs.qq.com/pdf/DS29QWFZLeUhWWlRR" class="tooltip" target="_blank">&#9432;</a>

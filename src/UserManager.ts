@@ -63,7 +63,7 @@ export function apiGameBack(req: http.IncomingMessage, res: http.ServerResponse)
       user.reduceRollbackNum();
       res.write('success');
       res.end();
-    } catch (err) {
+    } catch (err: any) {
       console.warn('error rollback', err);
       res.writeHead(500);
       res.write('Unable to rollback: ' + err.message);
@@ -167,7 +167,7 @@ export function login(req: http.IncomingMessage, res: http.ServerResponse): void
       }
       res.setHeader('Content-Type', 'application/json');
       res.write(JSON.stringify({id: user.id, name: user.name}));
-    } catch (err) {
+    } catch (err: any) {
       console.warn('error login', err);
       res.writeHead(500);
       res.write('Unable to login: ' + err.message);
@@ -202,7 +202,7 @@ export function register(req: http.IncomingMessage, res: http.ServerResponse): v
       GameLoader.getInstance().userIdMap.set(userId, user);
       res.setHeader('Content-Type', 'application/json');
       res.write('success');
-    } catch (err) {
+    } catch (err: any) {
       console.warn('error register user', err);
       res.writeHead(500);
       res.write('Unable to register user: ' + err.message);
@@ -280,7 +280,7 @@ export function resign(req: http.IncomingMessage, res: http.ServerResponse): voi
       game.exitPlayer(player);
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify(Server.getPlayerModel(player, false)));
-    } catch (err) {
+    } catch (err: any) {
       console.warn('error resign', err);
       console.warn('error resign:', body);
       res.writeHead(500);

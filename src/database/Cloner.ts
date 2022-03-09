@@ -40,7 +40,7 @@ export class Cloner {
 
         // response.game = Game.load(serialized);
       }
-    } catch (e) {
+    } catch (e: any) {
       response.err = e;
     }
     cb();

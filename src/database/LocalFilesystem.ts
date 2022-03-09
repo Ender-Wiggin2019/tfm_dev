@@ -40,7 +40,7 @@ export class Localfilesystem implements IDatabase {
       const text = fs.readFileSync(this._filename(game_id));
       const serializedGame = JSON.parse(text);
       cb(undefined, serializedGame);
-    } catch (err) {
+    } catch (err: any) {
       cb(err, undefined);
     }
   }
